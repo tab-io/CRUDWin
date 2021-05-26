@@ -7,40 +7,66 @@
     Private _phoneNumber As String
     Private _emailAddress As String
 
-    Public ReadOnly Property UserName() As String
+    Public Property UserName() As String
         Get
             Return _username
         End Get
+        Set(ByVal value As String)
+            _username = value
+        End Set
     End Property
 
-    Public ReadOnly Property Password() As String
+    Public Property Password() As String
         Get
             Return _password
         End Get
+        Set(ByVal value As String)
+            _password = value
+        End Set
     End Property
 
-    Public ReadOnly Property FirstName() As String
+    Public Property FirstName() As String
         Get
             Return _firstName
         End Get
+        Set(ByVal value As String)
+            _firstName = value
+        End Set
     End Property
 
-    Public ReadOnly Property LastName() As String
+    Public Property LastName() As String
         Get
             Return _lastName
         End Get
+        Set(ByVal value As String)
+            _lastName = value
+        End Set
     End Property
 
-    Public ReadOnly Property PhoneNumber() As String
+    Public Property PhoneNumber() As String
         Get
             Return _phoneNumber
         End Get
+        Set(ByVal value As String)
+            _phoneNumber = value
+        End Set
     End Property
 
-    Public ReadOnly Property EmailAddress() As String
+    Public Property EmailAddress() As String
         Get
             Return _emailAddress
         End Get
+        Set(ByVal value As String)
+            _emailAddress = value
+        End Set
     End Property
+
+    Public Sub Login()
+        Try
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
 
 End Class
