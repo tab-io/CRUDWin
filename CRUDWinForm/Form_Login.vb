@@ -6,5 +6,4 @@
         CRUDUser.Password = Me.TextBox_Password.Text
         CRUDUser.Login()
     End Sub
-
 End Class

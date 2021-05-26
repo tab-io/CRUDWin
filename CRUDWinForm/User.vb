@@ -1,4 +1,5 @@
-﻿Public Class User
+﻿Imports System.Data.SqlClient
+Public Class User
 
     Private _username As String
     Private _password As String
@@ -6,6 +7,8 @@
     Private _lastName As String
     Private _phoneNumber As String
     Private _emailAddress As String
+
+    Const conString As String = "Data Source=DESKTOP-9FJ3D74;Initial Catalog=CRUDUsers;Integrated Security=True"
 
     Public Property UserName() As String
         Get
@@ -62,10 +65,20 @@
     End Property
 
     Public Sub Login()
+
+        Dim sqlCon As New SqlConnection(conString)
+        Dim cmd As SqlCommand = sqlCon.CreateCommand
+
         Try
-
+            sqlCon.Open()
+            cmd.CommandType = CommandType.StoredProcedure
+            cmd.Parameters.Add(New SqlParameter("@Username", _username))
+            cmd.Parameters.Add(New SqlParameter("@Password", _password))
+            cmd.CommandText = "ValidateUserCredentials"
+            cmd.ExecuteNonQuery()
+            sqlCon.Close()
         Catch ex As Exception
-
+            MsgBox("err. occured")
         End Try
     End Sub
 
