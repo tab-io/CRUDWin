@@ -8,8 +8,6 @@ Public Class User
     Private _phoneNumber As String
     Private _emailAddress As String
 
-    Const conString As String = "Data Source=DESKTOP-9FJ3D74;Initial Catalog=CRUDUsers;Integrated Security=True"
-
     Public Property UserName() As String
         Get
             Return _username
@@ -74,12 +72,35 @@ Public Class User
         cmd.Parameters.Add(New SqlParameter("@Username", _username))
         cmd.Parameters.Add(New SqlParameter("@Password", _password))
         cmd.CommandText = "ValidateUserCredentials"
-        If cmd.ExecuteScalar() Then
-            Login = True
-        Else
-            Login = False
-        End If
+        Login = cmd.ExecuteScalar()
         sqlCon.Close()
+
+    End Function
+
+    Public Function Add() As Boolean
+
+        Dim sqlCon As New SqlConnection(conString)
+        Dim cmd As SqlCommand = sqlCon.CreateCommand
+
+        sqlCon.Open()
+        cmd.CommandType = CommandType.StoredProcedure
+        cmd.Parameters.Add(New SqlParameter("@Username", _username))
+        cmd.Parameters.Add(New SqlParameter("@Password", _password))
+        cmd.Parameters.Add(New SqlParameter("@FirstName", _firstName))
+        cmd.Parameters.Add(New SqlParameter("@LastName", _lastName))
+        cmd.Parameters.Add(New SqlParameter("@Email", _emailAddress))
+        cmd.Parameters.Add(New SqlParameter("@PhoneNumber", _phoneNumber))
+        cmd.CommandText = "AddUser"
+        Add = cmd.ExecuteScalar()
+        sqlCon.Close()
+
+    End Function
+
+    Public Function Edit() As Boolean
+
+    End Function
+
+    Public Function Delete() As Boolean
 
     End Function
 

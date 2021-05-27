@@ -1,6 +1,6 @@
 ﻿Public Class Form_Login
 
-    Dim CRUDUser As New User
+    Private CRUDUser As New User
     Private Sub Button_Login_Click(sender As Object, e As EventArgs) Handles Button_Login.Click
         UserLogin()
     End Sub
@@ -15,10 +15,11 @@
         If CRUDUser.Login() Then
             Me.Hide()
             Dim UserForm As New Form_User
-            UserForm.Show()
-            Me.Show()
+            UserForm.ShowDialog()
+            Me.Close()
         Else
             MsgBox("Sorry, this is not a valid login. Please try again")
         End If
     End Sub
+
 End Class
