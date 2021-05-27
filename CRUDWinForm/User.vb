@@ -64,22 +64,23 @@ Public Class User
         End Set
     End Property
 
-    Public Sub Login()
+    Public Function Login() As Boolean
 
         Dim sqlCon As New SqlConnection(conString)
         Dim cmd As SqlCommand = sqlCon.CreateCommand
 
-        Try
-            sqlCon.Open()
-            cmd.CommandType = CommandType.StoredProcedure
-            cmd.Parameters.Add(New SqlParameter("@Username", _username))
-            cmd.Parameters.Add(New SqlParameter("@Password", _password))
-            cmd.CommandText = "ValidateUserCredentials"
-            cmd.ExecuteNonQuery()
-            sqlCon.Close()
-        Catch ex As Exception
-            MsgBox("err. occured")
-        End Try
-    End Sub
+        sqlCon.Open()
+        cmd.CommandType = CommandType.StoredProcedure
+        cmd.Parameters.Add(New SqlParameter("@Username", _username))
+        cmd.Parameters.Add(New SqlParameter("@Password", _password))
+        cmd.CommandText = "ValidateUserCredentials"
+        If cmd.ExecuteScalar() Then
+            Login = True
+        Else
+            Login = False
+        End If
+        sqlCon.Close()
+
+    End Function
 
 End Class
