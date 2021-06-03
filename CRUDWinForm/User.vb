@@ -1,5 +1,5 @@
-﻿Imports System.Data.SqlClient
-Public Class User
+﻿Public Class User
+    Private SQL As New SQLControls
 
     Private _username As String
     Private _password As String
@@ -62,37 +62,32 @@ Public Class User
         End Set
     End Property
 
-    Public Function Login() As Boolean
+    Public Sub Login()
 
-        Dim sqlCon As New SqlConnection(conString)
-        Dim cmd As SqlCommand = sqlCon.CreateCommand
+        If SQL.IsAuthenticated(_username, _password) Then
+            'next form
+        Else
+            MsgBox("Invalid Login Information", MsgBoxStyle.Critical, "Login Failed")
+        End If
 
-        sqlCon.Open()
-        cmd.CommandType = CommandType.StoredProcedure
-        cmd.Parameters.Add(New SqlParameter("@Username", _username))
-        cmd.Parameters.Add(New SqlParameter("@Password", _password))
-        cmd.CommandText = "ValidateUserCredentials"
-        Login = cmd.ExecuteScalar()
-        sqlCon.Close()
-
-    End Function
+    End Sub
 
     Public Function Add() As Boolean
 
-        Dim sqlCon As New SqlConnection(conString)
-        Dim cmd As SqlCommand = sqlCon.CreateCommand
+        'Dim sqlCon As New SqlConnection(conString)
+        'Dim cmd As SqlCommand = sqlCon.CreateCommand
 
-        sqlCon.Open()
-        cmd.CommandType = CommandType.StoredProcedure
-        cmd.Parameters.Add(New SqlParameter("@Username", _username))
-        cmd.Parameters.Add(New SqlParameter("@Password", _password))
-        cmd.Parameters.Add(New SqlParameter("@FirstName", _firstName))
-        cmd.Parameters.Add(New SqlParameter("@LastName", _lastName))
-        cmd.Parameters.Add(New SqlParameter("@Email", _emailAddress))
-        cmd.Parameters.Add(New SqlParameter("@PhoneNumber", _phoneNumber))
-        cmd.CommandText = "AddUser"
-        Add = cmd.ExecuteScalar()
-        sqlCon.Close()
+        'sqlCon.Open()
+        'cmd.CommandType = CommandType.StoredProcedure
+        'cmd.Parameters.Add(New SqlParameter("@Username", _username))
+        'cmd.Parameters.Add(New SqlParameter("@Password", _password))
+        'cmd.Parameters.Add(New SqlParameter("@FirstName", _firstName))
+        'cmd.Parameters.Add(New SqlParameter("@LastName", _lastName))
+        'cmd.Parameters.Add(New SqlParameter("@Email", _emailAddress))
+        'cmd.Parameters.Add(New SqlParameter("@PhoneNumber", _phoneNumber))
+        'cmd.CommandText = "AddUser"
+        'Add = cmd.ExecuteScalar()
+        'sqlCon.Close()
 
     End Function
 

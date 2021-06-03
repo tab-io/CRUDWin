@@ -17,21 +17,11 @@
     End Sub
 
     Private Sub Button_Delete_Click(sender As Object, e As EventArgs) Handles Button_Delete.Click
-        If (DataGridView1.SelectedRows.Count = 1) Then
-            Dim dataRow As DataGridViewRow = DataGridView1.Rows(DataGridView1.FirstDisplayedScrollingRowIndex)
-            Dim deleteUser As New User
-            If deleteUser.Delete() Then
-                SetUserPropertiesFromSelectedDataGridRow(deleteUser, dataRow)
-            Else
 
-            End If
-        End If
     End Sub
 
     Private Sub SetUserPropertiesFromSelectedDataGridRow(ByRef currentUser As User, ByRef dataRow As DataGridViewRow)
-        With currentUser
-            .Password = dataRow.Cells(0).Value.ToString
-        End With
+
     End Sub
 
     Private Sub OpenEditForm(ByVal enableEdit As Boolean)

@@ -12,14 +12,16 @@
     Private Sub UserLogin()
         CRUDUser.UserName = Me.TextBox_Username.Text
         CRUDUser.Password = Me.TextBox_Password.Text
-        If CRUDUser.Login() Then
+        Try
+            CRUDUser.Login()
             Me.Hide()
             Dim UserForm As New Form_User
             UserForm.ShowDialog()
             Me.Close()
-        Else
-            MsgBox("Sorry, this is not a valid login. Please try again")
-        End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
     End Sub
 
 End Class

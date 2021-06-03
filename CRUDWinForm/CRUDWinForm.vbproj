@@ -115,6 +115,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Program.vb" />
+    <Compile Include="SQLControls.vb" />
     <Compile Include="User.vb" />
   </ItemGroup>
   <ItemGroup>
