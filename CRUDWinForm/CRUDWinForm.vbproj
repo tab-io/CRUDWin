@@ -74,11 +74,6 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CRUDUsersDataSet.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CRUDUsersDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Form_Edit.Designer.vb">
       <DependentUpon>Form_Edit.vb</DependentUpon>
     </Compile>
@@ -136,17 +131,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="CRUDUsersDataSet.xsc">
-      <DependentUpon>CRUDUsersDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="CRUDUsersDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>CRUDUsersDataSet.Designer.vb</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="CRUDUsersDataSet.xss">
-      <DependentUpon>CRUDUsersDataSet.xsd</DependentUpon>
-    </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

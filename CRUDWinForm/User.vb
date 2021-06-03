@@ -62,37 +62,16 @@
         End Set
     End Property
 
-    Public Sub Login()
-
-        If SQL.IsAuthenticated(_username, _password) Then
-            'next form
-        Else
-            MsgBox("Invalid Login Information", MsgBoxStyle.Critical, "Login Failed")
-        End If
-
-    End Sub
+    Public Function Login() As Boolean
+        Return SQL.IsAuthenticated(_username, _password)
+    End Function
 
     Public Function Add() As Boolean
-
-        'Dim sqlCon As New SqlConnection(conString)
-        'Dim cmd As SqlCommand = sqlCon.CreateCommand
-
-        'sqlCon.Open()
-        'cmd.CommandType = CommandType.StoredProcedure
-        'cmd.Parameters.Add(New SqlParameter("@Username", _username))
-        'cmd.Parameters.Add(New SqlParameter("@Password", _password))
-        'cmd.Parameters.Add(New SqlParameter("@FirstName", _firstName))
-        'cmd.Parameters.Add(New SqlParameter("@LastName", _lastName))
-        'cmd.Parameters.Add(New SqlParameter("@Email", _emailAddress))
-        'cmd.Parameters.Add(New SqlParameter("@PhoneNumber", _phoneNumber))
-        'cmd.CommandText = "AddUser"
-        'Add = cmd.ExecuteScalar()
-        'sqlCon.Close()
-
+        Return SQL.AddNewUser(_username, _password, _firstName, _lastName, _emailAddress, _phoneNumber)
     End Function
 
     Public Function Edit() As Boolean
-
+        Return SQL.EditUser(_username, _password, _firstName, _lastName, _emailAddress, _phoneNumber)
     End Function
 
     Public Function Delete() As Boolean
