@@ -15,7 +15,6 @@
         If CRUDUser.Login() Then
             Me.Hide()
             Dim UserForm As New Form_User
-            UserForm.ActiveUser = CRUDUser.UserName
             UserForm.ShowDialog()
             Me.Close()
         Else

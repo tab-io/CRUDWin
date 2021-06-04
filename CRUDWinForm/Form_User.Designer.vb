@@ -34,7 +34,7 @@ Partial Class Form_User
         Me.Button_Create.AutoSize = True
         Me.Button_Create.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.Button_Create.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button_Create.Location = New System.Drawing.Point(692, 7)
+        Me.Button_Create.Location = New System.Drawing.Point(657, 7)
         Me.Button_Create.Name = "Button_Create"
         Me.Button_Create.Size = New System.Drawing.Size(163, 46)
         Me.Button_Create.TabIndex = 7
@@ -47,7 +47,7 @@ Partial Class Form_User
         Me.Button_Edit.AutoSize = True
         Me.Button_Edit.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.Button_Edit.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button_Edit.Location = New System.Drawing.Point(692, 59)
+        Me.Button_Edit.Location = New System.Drawing.Point(657, 59)
         Me.Button_Edit.Name = "Button_Edit"
         Me.Button_Edit.Size = New System.Drawing.Size(163, 46)
         Me.Button_Edit.TabIndex = 8
@@ -60,7 +60,7 @@ Partial Class Form_User
         Me.Button_Delete.AutoSize = True
         Me.Button_Delete.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Button_Delete.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button_Delete.Location = New System.Drawing.Point(692, 111)
+        Me.Button_Delete.Location = New System.Drawing.Point(657, 111)
         Me.Button_Delete.Name = "Button_Delete"
         Me.Button_Delete.Size = New System.Drawing.Size(163, 46)
         Me.Button_Delete.TabIndex = 9
@@ -73,14 +73,14 @@ Partial Class Form_User
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Location = New System.Drawing.Point(7, 7)
         Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(679, 342)
+        Me.DataGridView1.Size = New System.Drawing.Size(644, 342)
         Me.DataGridView1.TabIndex = 10
         '
         'Form_User
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(861, 361)
+        Me.ClientSize = New System.Drawing.Size(826, 361)
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.Button_Delete)
         Me.Controls.Add(Me.Button_Edit)

@@ -1,5 +1,6 @@
 ﻿Public Class User
-    Private SQL As New SQLControls
+
+    Inherits SQLControls
 
     Private _username As String
     Private _password As String
@@ -63,19 +64,19 @@
     End Property
 
     Public Function Login() As Boolean
-        Return SQL.IsAuthenticated(_username, _password)
+        Return IsAuthenticated(_username, _password)
     End Function
 
     Public Function Add() As Boolean
-        Return SQL.AddNewUser(_username, _password, _firstName, _lastName, _emailAddress, _phoneNumber)
+        Return AddNewUser(_username, _password, _firstName, _lastName, _emailAddress, _phoneNumber)
     End Function
 
-    Public Function Edit() As Boolean
-        Return SQL.EditUser(_username, _password, _firstName, _lastName, _emailAddress, _phoneNumber)
+    Public Function Edit(editUsername As String) As Boolean
+        Return EditUser(_username, _password, _firstName, _lastName, _emailAddress, _phoneNumber, editUsername)
     End Function
 
     Public Function Delete() As Boolean
-
+        Return DeleteUser(_username)
     End Function
 
 End Class

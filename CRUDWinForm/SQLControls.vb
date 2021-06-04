@@ -5,17 +5,20 @@ Public Class SQLControls
     Private SQLDA As SqlDataAdapter
     Private SQLDS As DataSet
 
-    Public Function IsAuthenticated(ByVal username As String, ByVal password As String) As Boolean
+    Public Function IsAuthenticated(username As String, password As String) As Boolean
         Try
             SQLCON.Open()
-
             SQLCMD = SQLCON.CreateCommand
             SQLDA = New SqlDataAdapter(SQLCMD)
             SQLDS = New DataSet()
-            SQLCMD.CommandType = CommandType.StoredProcedure
-            SQLCMD.Parameters.Add(New SqlParameter("@Username", username))
-            SQLCMD.Parameters.Add(New SqlParameter("@Password", password))
-            SQLCMD.CommandText = "ValidateUserCredentials"
+
+            With SQLCMD
+                .CommandType = CommandType.StoredProcedure
+                .Parameters.Add(New SqlParameter("@Username", username))
+                .Parameters.Add(New SqlParameter("@Password", password))
+                .CommandText = "ValidateUserCredentials"
+            End With
+
             SQLDA.Fill(SQLDS)
             SQLCON.Close()
             If SQLDS.Tables(0).Rows.Count() <= 0 Then
@@ -48,21 +51,23 @@ Public Class SQLControls
         End Try
     End Function
 
-    Public Function AddNewUser(ByVal username As String, ByVal password As String, ByVal firstName As String, ByVal lastName As String, ByVal emailAddress As String, ByVal phoneNumber As String) As Boolean
+    Public Function AddNewUser(username As String, password As String, firstName As String, lastName As String, emailAddress As String, phoneNumber As String) As Boolean
         Try
             SQLCON.Open()
             SQLCMD = SQLCON.CreateCommand
-            SQLDA = New SqlDataAdapter(SQLCMD)
-            SQLDS = New DataSet()
-            SQLCMD.CommandType = CommandType.StoredProcedure
-            SQLCMD.Parameters.Add(New SqlParameter("@Username", username))
-            SQLCMD.Parameters.Add(New SqlParameter("@Password", password))
-            SQLCMD.Parameters.Add(New SqlParameter("@FirstName", firstName))
-            SQLCMD.Parameters.Add(New SqlParameter("@LastName", lastName))
-            SQLCMD.Parameters.Add(New SqlParameter("@Email", emailAddress))
-            SQLCMD.Parameters.Add(New SqlParameter("@PhoneNumber", phoneNumber))
-            SQLCMD.CommandText = "AddUser"
-            SQLCMD.ExecuteNonQuery()
+
+            With SQLCMD
+                .CommandType = CommandType.StoredProcedure
+                .Parameters.Add(New SqlParameter("@Username", username))
+                .Parameters.Add(New SqlParameter("@Password", password))
+                .Parameters.Add(New SqlParameter("@FirstName", firstName))
+                .Parameters.Add(New SqlParameter("@LastName", lastName))
+                .Parameters.Add(New SqlParameter("@Email", emailAddress))
+                .Parameters.Add(New SqlParameter("@PhoneNumber", phoneNumber))
+                .CommandText = "AddUser"
+                .ExecuteNonQuery()
+            End With
+
             SQLCON.Close()
             Return True
         Catch ex As Exception
@@ -72,21 +77,45 @@ Public Class SQLControls
         End Try
     End Function
 
-    Public Function EditUser(ByVal username As String, ByVal password As String, ByVal firstName As String, ByVal lastName As String, ByVal emailAddress As String, ByVal phoneNumber As String) As Boolean
+    Public Function EditUser(username As String, password As String, firstName As String, lastName As String, emailAddress As String, phoneNumber As String, editUsername As String) As Boolean
         Try
             SQLCON.Open()
             SQLCMD = SQLCON.CreateCommand
-            SQLDA = New SqlDataAdapter(SQLCMD)
-            SQLDS = New DataSet()
-            SQLCMD.CommandType = CommandType.StoredProcedure
-            SQLCMD.Parameters.Add(New SqlParameter("@Username", username))
-            SQLCMD.Parameters.Add(New SqlParameter("@Password", password))
-            SQLCMD.Parameters.Add(New SqlParameter("@FirstName", firstName))
-            SQLCMD.Parameters.Add(New SqlParameter("@LastName", lastName))
-            SQLCMD.Parameters.Add(New SqlParameter("@Email", emailAddress))
-            SQLCMD.Parameters.Add(New SqlParameter("@PhoneNumber", phoneNumber))
-            SQLCMD.CommandText = "UpdateUser"
-            SQLCMD.ExecuteNonQuery()
+
+            With SQLCMD
+                .CommandType = CommandType.StoredProcedure
+                .Parameters.Add(New SqlParameter("@Username", username))
+                .Parameters.Add(New SqlParameter("@Password", password))
+                .Parameters.Add(New SqlParameter("@FirstName", firstName))
+                .Parameters.Add(New SqlParameter("@LastName", lastName))
+                .Parameters.Add(New SqlParameter("@Email", emailAddress))
+                .Parameters.Add(New SqlParameter("@PhoneNumber", phoneNumber))
+                .Parameters.Add(New SqlParameter("@EditUsername", editUsername))
+                .CommandText = "UpdateUser"
+                .ExecuteNonQuery()
+            End With
+
+            SQLCON.Close()
+            Return True
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            If SQLCON.State = ConnectionState.Open Then SQLCON.Close()
+            Return False
+        End Try
+    End Function
+
+    Public Function DeleteUser(username As String) As Boolean
+        Try
+            SQLCON.Open()
+            SQLCMD = SQLCON.CreateCommand
+
+            With SQLCMD
+                .CommandType = CommandType.StoredProcedure
+                .Parameters.Add(New SqlParameter("@Username", username))
+                .CommandText = "DeleteUser"
+                .ExecuteNonQuery()
+            End With
+
             SQLCON.Close()
             Return True
         Catch ex As Exception
