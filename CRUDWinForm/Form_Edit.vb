@@ -15,21 +15,42 @@
     End Sub
 
     Private Sub Button_Save_Click(sender As Object, e As EventArgs) Handles Button_Save.Click
-        PopulateUserFromFormFields()
-        If MessageBox.Show("Does this information look correct?", "Please verify user information", MessageBoxButtons.YesNo) = DialogResult.Yes Then
-            If _editMode Then
-                If _editUser.Edit(_editUsername) Then
-                    Me.Hide()
+        If CheckForRequiredFields() Then
+            PopulateUserFromFormFields()
+            If MessageBox.Show("Does this information look correct?", "Please verify user information", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+                If _editMode Then
+                    EditSelectedUser()
+                Else
+                    CreateNewUser()
                 End If
-            Else
-                CreateNewUser()
             End If
+        Else
+            MsgBox("All fields are required!", vbCritical)
+        End If
+    End Sub
+
+    Private Function CheckForRequiredFields() As Boolean
+        CheckForRequiredFields = Me.TextBox_EmailAddress.Text <> vbNullString And
+                                 Me.TextBox_FirstName.Text <> vbNullString And
+                                 Me.TextBox_LastName.Text <> vbNullString And
+                                 Me.TextBox_Password.Text <> vbNullString And
+                                 Me.TextBox_PhoneNumber.Text <> vbNullString And
+                                 Me.TextBox_Username.Text <> vbNullString
+    End Function
+
+    Private Sub EditSelectedUser()
+        If _editUser.Edit(_editUsername) Then
+            Me.Hide()
+        Else
+            DisplayInputError()
         End If
     End Sub
 
     Private Sub CreateNewUser()
         If _editUser.Add() Then
             Me.Hide()
+        Else
+            DisplayInputError()
         End If
     End Sub
 
@@ -57,5 +78,24 @@
             .PhoneNumber = Me.TextBox_PhoneNumber.Text
             .UserName = Me.TextBox_Username.Text
         End With
+    End Sub
+
+    Private Sub DisplayInputError()
+        Select Case _editUser.SQLCheckConstraint
+            Case "CHK_ValidUsername"
+                MsgBox("Your username must be at least 5 characters.")
+            Case "CHK_ValidPassword"
+                MsgBox("Your password must be at least 5 characters.")
+            Case "CHK_ValidFirstName"
+                MsgBox("Surely this user has a first name?")
+            Case "CHK_ValidLastName"
+                MsgBox("Surely this user has a last name?")
+            Case "CHK_ValidEmail"
+                MsgBox("Please use a valid email Ex. JohnDoe@example.com")
+            Case "CHK_ValidPhone"
+                MsgBox("Please enter your phone number, area code included for a total of 10 numbers.")
+            Case Else
+                MsgBox(_editUser.SQLCheckConstraint)
+        End Select
     End Sub
 End Class

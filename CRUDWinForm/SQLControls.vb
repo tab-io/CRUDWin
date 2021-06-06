@@ -1,9 +1,11 @@
 ﻿Imports System.Data.SqlClient
+Imports System.Text.RegularExpressions
 Public Class SQLControls
     Private SQLCON As New SqlConnection("Data Source=DESKTOP-9FJ3D74;Initial Catalog=CRUDUsers;Integrated Security=True")
     Private SQLCMD As SqlCommand
     Private SQLDA As SqlDataAdapter
     Private SQLDS As DataSet
+    Public SQLCheckConstraint As String
 
     Public Function IsAuthenticated(username As String, password As String) As Boolean
         Try
@@ -22,7 +24,7 @@ Public Class SQLControls
             SQLDA.Fill(SQLDS)
             Return SQLDS.Tables(0).Rows.Count() > 0
         Catch ex As Exception
-            MsgBox(ex.Message)
+            SetCheckConstraint(ex)
             Return False
         Finally
             If SQLCON.State = ConnectionState.Open Then SQLCON.Close()
@@ -40,7 +42,7 @@ Public Class SQLControls
             SQLDA.Fill(SQLDS)
             Return SQLDS.Tables.Item(0)
         Catch ex As Exception
-            MsgBox(ex.Message)
+            SetCheckConstraint(ex)
             Return Nothing
         Finally
             If SQLCON.State = ConnectionState.Open Then SQLCON.Close()
@@ -68,7 +70,7 @@ Public Class SQLControls
 
             Return True
         Catch ex As Exception
-            MsgBox(ex.Message)
+            SetCheckConstraint(ex)
             Return False
         Finally
             If SQLCON.State = ConnectionState.Open Then SQLCON.Close()
@@ -95,9 +97,9 @@ Public Class SQLControls
                 .ExecuteNonQuery()
             End With
 
-                Return True
+            Return True
         Catch ex As Exception
-            MsgBox(ex.Message)
+            SetCheckConstraint(ex)
             Return False
         Finally
             If SQLCON.State = ConnectionState.Open Then SQLCON.Close()
@@ -118,10 +120,17 @@ Public Class SQLControls
 
             Return True
         Catch ex As Exception
-            MsgBox(ex.Message)
+            SetCheckConstraint(ex)
             Return False
         Finally
             If SQLCON.State = ConnectionState.Open Then SQLCON.Close()
         End Try
     End Function
+
+    Private Sub SetCheckConstraint(ex As Exception)
+        Const regexPattern As String = ".*(CHK_[A-z!]{1,}).*"
+        Dim regex As Regex = New Regex(regexPattern)
+        Dim exMessage As String : exMessage = Replace(ex.Message, vbLf, vbNullString)
+        SQLCheckConstraint = IIf(regex.Replace(exMessage, "$1") = vbNullString, ex.Message, regex.Replace(exMessage, "$1"))
+    End Sub
 End Class

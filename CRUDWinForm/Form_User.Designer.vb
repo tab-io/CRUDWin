@@ -32,7 +32,7 @@ Partial Class Form_User
         'Button_Create
         '
         Me.Button_Create.AutoSize = True
-        Me.Button_Create.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.Button_Create.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Button_Create.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button_Create.Location = New System.Drawing.Point(657, 7)
         Me.Button_Create.Name = "Button_Create"
@@ -45,7 +45,7 @@ Partial Class Form_User
         'Button_Edit
         '
         Me.Button_Edit.AutoSize = True
-        Me.Button_Edit.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.Button_Edit.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.Button_Edit.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button_Edit.Location = New System.Drawing.Point(657, 59)
         Me.Button_Edit.Name = "Button_Edit"
@@ -70,11 +70,12 @@ Partial Class Form_User
         '
         'DataGridView1
         '
+        Me.DataGridView1.AllowUserToAddRows = False
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Location = New System.Drawing.Point(7, 7)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
-        Me.DataGridView1.Size = New System.Drawing.Size(644, 342)
+        Me.DataGridView1.Size = New System.Drawing.Size(644, 349)
         Me.DataGridView1.TabIndex = 10
         '
         'Form_User

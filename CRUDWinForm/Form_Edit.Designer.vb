@@ -107,7 +107,7 @@ Partial Class Form_Edit
         Me.TextBox_Username.Location = New System.Drawing.Point(19, 48)
         Me.TextBox_Username.Name = "TextBox_Username"
         Me.TextBox_Username.Size = New System.Drawing.Size(167, 23)
-        Me.TextBox_Username.TabIndex = 6
+        Me.TextBox_Username.TabIndex = 1
         '
         'TextBox_Password
         '
@@ -115,7 +115,7 @@ Partial Class Form_Edit
         Me.TextBox_Password.Location = New System.Drawing.Point(19, 104)
         Me.TextBox_Password.Name = "TextBox_Password"
         Me.TextBox_Password.Size = New System.Drawing.Size(167, 23)
-        Me.TextBox_Password.TabIndex = 7
+        Me.TextBox_Password.TabIndex = 2
         '
         'TextBox_FirstName
         '
@@ -123,7 +123,7 @@ Partial Class Form_Edit
         Me.TextBox_FirstName.Location = New System.Drawing.Point(204, 46)
         Me.TextBox_FirstName.Name = "TextBox_FirstName"
         Me.TextBox_FirstName.Size = New System.Drawing.Size(167, 23)
-        Me.TextBox_FirstName.TabIndex = 8
+        Me.TextBox_FirstName.TabIndex = 4
         '
         'TextBox_LastName
         '
@@ -131,7 +131,7 @@ Partial Class Form_Edit
         Me.TextBox_LastName.Location = New System.Drawing.Point(204, 104)
         Me.TextBox_LastName.Name = "TextBox_LastName"
         Me.TextBox_LastName.Size = New System.Drawing.Size(167, 23)
-        Me.TextBox_LastName.TabIndex = 9
+        Me.TextBox_LastName.TabIndex = 5
         '
         'TextBox_PhoneNumber
         '
@@ -139,7 +139,7 @@ Partial Class Form_Edit
         Me.TextBox_PhoneNumber.Location = New System.Drawing.Point(204, 161)
         Me.TextBox_PhoneNumber.Name = "TextBox_PhoneNumber"
         Me.TextBox_PhoneNumber.Size = New System.Drawing.Size(167, 23)
-        Me.TextBox_PhoneNumber.TabIndex = 10
+        Me.TextBox_PhoneNumber.TabIndex = 6
         '
         'TextBox_EmailAddress
         '
@@ -147,7 +147,7 @@ Partial Class Form_Edit
         Me.TextBox_EmailAddress.Location = New System.Drawing.Point(19, 161)
         Me.TextBox_EmailAddress.Name = "TextBox_EmailAddress"
         Me.TextBox_EmailAddress.Size = New System.Drawing.Size(167, 23)
-        Me.TextBox_EmailAddress.TabIndex = 11
+        Me.TextBox_EmailAddress.TabIndex = 3
         '
         'Button_Save
         '
@@ -157,7 +157,7 @@ Partial Class Form_Edit
         Me.Button_Save.Location = New System.Drawing.Point(19, 195)
         Me.Button_Save.Name = "Button_Save"
         Me.Button_Save.Size = New System.Drawing.Size(72, 36)
-        Me.Button_Save.TabIndex = 12
+        Me.Button_Save.TabIndex = 7
         Me.Button_Save.Text = "Save"
         Me.Button_Save.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage
         Me.Button_Save.UseVisualStyleBackColor = False
@@ -170,7 +170,7 @@ Partial Class Form_Edit
         Me.Button_Cancel.Location = New System.Drawing.Point(97, 195)
         Me.Button_Cancel.Name = "Button_Cancel"
         Me.Button_Cancel.Size = New System.Drawing.Size(90, 36)
-        Me.Button_Cancel.TabIndex = 13
+        Me.Button_Cancel.TabIndex = 8
         Me.Button_Cancel.Text = "Cancel"
         Me.Button_Cancel.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage
         Me.Button_Cancel.UseVisualStyleBackColor = False
@@ -196,7 +196,7 @@ Partial Class Form_Edit
         Me.GroupBox_Edit.Size = New System.Drawing.Size(393, 247)
         Me.GroupBox_Edit.TabIndex = 14
         Me.GroupBox_Edit.TabStop = False
-        Me.GroupBox_Edit.Text = "Add New User Information"
+        Me.GroupBox_Edit.Text = "Enter User Information"
         '
         'Label_EditHeader
         '
@@ -216,7 +216,7 @@ Partial Class Form_Edit
         Me.Controls.Add(Me.Label_EditHeader)
         Me.Controls.Add(Me.GroupBox_Edit)
         Me.Name = "Form_Edit"
-        Me.Text = "Edit"
+        Me.Text = "Create Mode"
         Me.GroupBox_Edit.ResumeLayout(False)
         Me.GroupBox_Edit.PerformLayout()
         Me.ResumeLayout(False)
