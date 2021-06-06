@@ -20,16 +20,12 @@ Public Class SQLControls
             End With
 
             SQLDA.Fill(SQLDS)
-            SQLCON.Close()
-            If SQLDS.Tables(0).Rows.Count() <= 0 Then
-                Return False
-            Else
-                Return True
-            End If
+            Return SQLDS.Tables(0).Rows.Count() > 0
         Catch ex As Exception
             MsgBox(ex.Message)
-            If SQLCON.State = ConnectionState.Open Then SQLCON.Close()
             Return False
+        Finally
+            If SQLCON.State = ConnectionState.Open Then SQLCON.Close()
         End Try
     End Function
 
@@ -42,12 +38,12 @@ Public Class SQLControls
             SQLCMD.CommandType = CommandType.StoredProcedure
             SQLCMD.CommandText = "GetAllUsers"
             SQLDA.Fill(SQLDS)
-            SQLCON.Close()
             Return SQLDS.Tables.Item(0)
         Catch ex As Exception
             MsgBox(ex.Message)
-            If SQLCON.State = ConnectionState.Open Then SQLCON.Close()
             Return Nothing
+        Finally
+            If SQLCON.State = ConnectionState.Open Then SQLCON.Close()
         End Try
     End Function
 
@@ -58,22 +54,24 @@ Public Class SQLControls
 
             With SQLCMD
                 .CommandType = CommandType.StoredProcedure
-                .Parameters.Add(New SqlParameter("@Username", username))
-                .Parameters.Add(New SqlParameter("@Password", password))
-                .Parameters.Add(New SqlParameter("@FirstName", firstName))
-                .Parameters.Add(New SqlParameter("@LastName", lastName))
-                .Parameters.Add(New SqlParameter("@Email", emailAddress))
-                .Parameters.Add(New SqlParameter("@PhoneNumber", phoneNumber))
+                With .Parameters
+                    .Add(New SqlParameter("@Username", username))
+                    .Add(New SqlParameter("@Password", password))
+                    .Add(New SqlParameter("@FirstName", firstName))
+                    .Add(New SqlParameter("@LastName", lastName))
+                    .Add(New SqlParameter("@Email", emailAddress))
+                    .Add(New SqlParameter("@PhoneNumber", phoneNumber))
+                End With
                 .CommandText = "AddUser"
                 .ExecuteNonQuery()
             End With
 
-            SQLCON.Close()
             Return True
         Catch ex As Exception
             MsgBox(ex.Message)
-            If SQLCON.State = ConnectionState.Open Then SQLCON.Close()
             Return False
+        Finally
+            If SQLCON.State = ConnectionState.Open Then SQLCON.Close()
         End Try
     End Function
 
@@ -84,23 +82,25 @@ Public Class SQLControls
 
             With SQLCMD
                 .CommandType = CommandType.StoredProcedure
-                .Parameters.Add(New SqlParameter("@Username", username))
-                .Parameters.Add(New SqlParameter("@Password", password))
-                .Parameters.Add(New SqlParameter("@FirstName", firstName))
-                .Parameters.Add(New SqlParameter("@LastName", lastName))
-                .Parameters.Add(New SqlParameter("@Email", emailAddress))
-                .Parameters.Add(New SqlParameter("@PhoneNumber", phoneNumber))
-                .Parameters.Add(New SqlParameter("@EditUsername", editUsername))
+                With .Parameters
+                    .Add(New SqlParameter("@Username", username))
+                    .Add(New SqlParameter("@Password", password))
+                    .Add(New SqlParameter("@FirstName", firstName))
+                    .Add(New SqlParameter("@LastName", lastName))
+                    .Add(New SqlParameter("@Email", emailAddress))
+                    .Add(New SqlParameter("@PhoneNumber", phoneNumber))
+                    .Add(New SqlParameter("@EditUsername", editUsername))
+                End With
                 .CommandText = "UpdateUser"
                 .ExecuteNonQuery()
             End With
 
-            SQLCON.Close()
-            Return True
+                Return True
         Catch ex As Exception
             MsgBox(ex.Message)
-            If SQLCON.State = ConnectionState.Open Then SQLCON.Close()
             Return False
+        Finally
+            If SQLCON.State = ConnectionState.Open Then SQLCON.Close()
         End Try
     End Function
 
@@ -116,12 +116,12 @@ Public Class SQLControls
                 .ExecuteNonQuery()
             End With
 
-            SQLCON.Close()
             Return True
         Catch ex As Exception
             MsgBox(ex.Message)
-            If SQLCON.State = ConnectionState.Open Then SQLCON.Close()
             Return False
+        Finally
+            If SQLCON.State = ConnectionState.Open Then SQLCON.Close()
         End Try
     End Function
 End Class

@@ -16,12 +16,14 @@
 
     Private Sub Button_Save_Click(sender As Object, e As EventArgs) Handles Button_Save.Click
         PopulateUserFromFormFields()
-        If _editMode Then
-            If _editUser.Edit(_editUsername) Then
-                Me.Hide()
+        If MessageBox.Show("Does this information look correct?", "Please verify user information", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+            If _editMode Then
+                If _editUser.Edit(_editUsername) Then
+                    Me.Hide()
+                End If
+            Else
+                CreateNewUser()
             End If
-        Else
-            CreateNewUser()
         End If
     End Sub
 
