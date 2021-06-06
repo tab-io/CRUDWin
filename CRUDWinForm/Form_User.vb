@@ -8,7 +8,7 @@
                 DisplayCreateModeForm()
             End If
         Else
-            MsgBox("Please select a row for edit")
+            MsgBox("Please select a single row to edit")
         End If
     End Sub
 
@@ -25,6 +25,7 @@
         Dim EditForm As New Form_Edit(True, editUser)
         EditForm.Label_EditHeader.Text = "Editing Username: " & editUser.UserName
         EditForm.GroupBox_Edit.Text = "Edit User Information"
+        EditForm.Text = "Edit Mode"
         EditForm.ShowDialog()
         UpdateCRUDData()
         Me.Show()
@@ -61,13 +62,8 @@
 
     Private Sub Button_Delete_Click(sender As Object, e As EventArgs) Handles Button_Delete.Click
         If Me.DataGridView1.SelectedRows.Count = 1 Then
-            If Me.DataGridView1.Rows.Count <> 2 Then
-                If MessageBox.Show("Are you sure you want to delete this user?", "This user will be gone forever!", MessageBoxButtons.YesNo) = DialogResult.Yes Then
-                    Dim deleteUser As New User
-                    SetUserPropertiesWithDataGrid(deleteUser)
-                    deleteUser.Delete()
-                    UpdateCRUDData()
-                End If
+            If Me.DataGridView1.Rows.Count <> 1 Then
+                If MessageBox.Show("Are you sure you want to delete this user?", "This user will be gone forever!", MessageBoxButtons.YesNo) = DialogResult.Yes Then DeleteSelectedUser()
             Else
                 MsgBox("Please do not delete our last user!")
             End If
@@ -76,4 +72,10 @@
         End If
     End Sub
 
+    Private Sub DeleteSelectedUser()
+        Dim deleteUser As New User
+        SetUserPropertiesWithDataGrid(deleteUser)
+        deleteUser.Delete()
+        UpdateCRUDData()
+    End Sub
 End Class

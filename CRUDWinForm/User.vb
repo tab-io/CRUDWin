@@ -13,7 +13,7 @@
         Get
             Return _username
         End Get
-        Set(ByVal value As String)
+        Set(value As String)
             _username = value
         End Set
     End Property
@@ -22,7 +22,7 @@
         Get
             Return _password
         End Get
-        Set(ByVal value As String)
+        Set(value As String)
             _password = value
         End Set
     End Property
@@ -31,7 +31,7 @@
         Get
             Return _firstName
         End Get
-        Set(ByVal value As String)
+        Set(value As String)
             _firstName = value
         End Set
     End Property
@@ -40,7 +40,7 @@
         Get
             Return _lastName
         End Get
-        Set(ByVal value As String)
+        Set(value As String)
             _lastName = value
         End Set
     End Property
@@ -49,7 +49,7 @@
         Get
             Return _phoneNumber
         End Get
-        Set(ByVal value As String)
+        Set(value As String)
             _phoneNumber = value
         End Set
     End Property
@@ -58,7 +58,7 @@
         Get
             Return _emailAddress
         End Get
-        Set(ByVal value As String)
+        Set(value As String)
             _emailAddress = value
         End Set
     End Property
